@@ -33,7 +33,7 @@
         }
 
         const data = {
-            labels: [`${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`],
+            labels: [],
             datasets: [{
                 label: 'Heart Beat',
                 data: [],
@@ -64,18 +64,20 @@
         myChart = new Chart(document.querySelector('#canvas'), config);
 
         setInterval(() => {
-            if (count < 10) {
-                if (myChart) {
-                    myChart.destroy();
-                }
+            if (myChart) {
+                myChart.destroy();
+            }
+            myChart = new Chart(document.querySelector('#canvas'), config);
 
-                myChart = new Chart(document.querySelector('#canvas'), config);
+            for (let i = 0; i < data.datasets.length; i++) {
+                data.datasets[i].data.push(Math.floor(Math.random() * 100) + 1);
+            }
+
+            if (count < 10) {
                 data.labels.push(`${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`);
             }
-            
-            for (let i = 0; i < data.datasets.length; i++) {
-                    data.datasets[i].data.push(Math.floor(Math.random() * 100) + 1);
-                }
+
+
 
             count += 1;
         }, 1000);
