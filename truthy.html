@@ -60,19 +60,18 @@
         myChart = new Chart(document.querySelector('#canvas'), config);
 
         setInterval(() => {
-            //if (count < 10) {
+            if (count < 10) {
                 if (myChart) {
                     myChart.destroy();
                 }
 
-                for (let i = 0; i < data.datasets.length; i++) {
-                    data.datasets[i].data.push(Math.floor(Math.random() * 100) + 1);
-                }
-
-
                 myChart = new Chart(document.querySelector('#canvas'), config);
                 data.labels.push(`${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`);
-            //}
+            }
+            
+            for (let i = 0; i < data.datasets.length; i++) {
+                    data.datasets[i].data.push(Math.floor(Math.random() * 100) + 1);
+                }
 
             count += 1;
         }, 1000);
