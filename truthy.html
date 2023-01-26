@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>._.</title>
+    <style>
+        html,
+        body {
+            width: 800px;
+            height: 800px;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+    <p style="text-align: center;">Patient #5</p>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.0/chart.umd.js"
+        integrity="sha512-B51MzT4ksAo6Y0TcUpmvZnchoPYfIcHadIaFqV5OR5JAh6dneYAeYT1xIlaNHhhFAALd5FLDTWNt/fkxhwE/oQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        window.onerror = (e) => {
+            alert(e);
+        }
+
+        const data = {
+            labels: [`${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`],
+            datasets: [{
+                label: 'Heart Beat',
+                data: [],
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            },
+            {
+                label: 'Blood Pressure',
+                data: [],
+                fill: false,
+                borderColor: 'rgb(249, 0, 0)',
+                tension: 0.1
+            }]
+        };
+
+        const config = {
+            type: 'line',
+            data: data,
+            options: {
+                animations: false
+            }
+        };
+
+        let myChart;
+        let count = 0;
+
+        myChart = new Chart(document.querySelector('#canvas'), config);
+
+        setInterval(() => {
+            //if (count < 10) {
+                if (myChart) {
+                    myChart.destroy();
+                }
+
+                for (let i = 0; i < data.datasets.length; i++) {
+                    data.datasets[i].data.push(Math.floor(Math.random() * 100) + 1);
+                }
+
+
+                myChart = new Chart(document.querySelector('#canvas'), config);
+                data.labels.push(`${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`);
+            //}
+
+            count += 1;
+        }, 1000);
+
+        /*function labels(labels = [], extraLabels = '') {
+            let hieghestDatasetLength = 0;
+            let compiledLabels = [];
+
+            for (let i = 0; i < data.datasets.length; i++) {
+                if (hieghestDatasetLength < data.datasets[i].data.length) {
+                    hieghestDatasetLength = data.datasets[i].data.length;
+                } 
+            }
+
+            for (let i = 0; i < hieghestDatasetLength; i++) {
+                if (labels[i]) {
+                    compiledLabels.push(labels[i]);
+                } else if (extraLabels) {
+                    compiledLabels.push(extraLabels)
+                } else {
+                    compiledLabels.push('No label')
+                }
+            }
+
+            return compiledLabels;
+        }*/
+    </script>
+</body>
+
+</html>
