@@ -8,3 +8,5 @@ const fetch = await fetch('https://russell2259.github.io/stuff/devtools.html');
 const template = fetch.json();
 
 frame.contentWindow.document.write(template);
+
+alert('...');
