@@ -50,6 +50,9 @@
                 <p class="is-small">Version:</p>
                 <input type="text" value="1.0.0" placeholder="OS Version" id="osversion">
                 <br>
+                <p class="is-small">Developers: (separate with commas)</p>
+                <input type="text" value="1.0.0" placeholder="Russell2259,Griffpatch" id="developers">
+                <br>
                 <br>
                 <button id="generate_osconfig">Generate</button>
                 <!--<br>
@@ -91,17 +94,21 @@
             osprograms: [
                 {
                     name: 'main',
-                    description: 'The startup system for Test OS',
+                    description: '',
                     spritelist: ['main'],
                     spritelistlength: 1
                 }
             ],
-            osprogramslength: 1
+            osprogramslength: 1,
+            developers: [],
+            developerslength: 0
         }
 
         generateBtn.addEventListener('click', (e) => {
             generated.osname = document.querySelector('#osname').value;
             generated.osversion = document.querySelector('#osversion').value;
+            generated.developers = document.querySelector('#developers').value.split(',');
+            generated.developerslength = document.querySelector('#developers').value.split(',').length;
 
             const json = JSON.stringify(generated);
 
