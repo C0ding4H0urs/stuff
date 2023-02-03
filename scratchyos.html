@@ -100,8 +100,8 @@
         }
 
         generateBtn.addEventListener('click', (e) => {
-            generated.osname = document.querySelector('#osname');
-            generated.version = document.querySelector('#osversion');
+            generated.osname = document.querySelector('#osname').value;
+            generated.osversion = document.querySelector('#osversion').value;
 
             const json = JSON.stringify(generated);
 
