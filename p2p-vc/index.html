@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Video Chat</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <style>
+      .hidden {
+          display: none;
+      }
+        .hidden {
+            display: none;
+        }
+
+        .live {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+        }
+
+      .live {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          width: 100%;
+          height: 100%;
+          background-color: #000;
+      }
+
+      #local-video {
+          background: #000;
+          height: 250px;
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 350px;
+          margin: 16px;
+          border: 2px solid #fff;
+      }
+
+      #remote-video {
+          position: absolute;
+          max-width: 100%;
+          height: 100%;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+      }
+
+      .button.end_call {
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          padding: 8px;
+          background-color: red;
+          color: white;
+          border: none;
+          margin: 16px;
+      }
+
+      .button.open_chat {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          padding: 15px;
+          background-color: blue;
+          color: white;
+          border-radius: 100%;
+          margin: 16px;
+          border: none;
+      }
+
+      .button.open_chat>i {
+          font-size: 25px;
+      }
+
+      .chat {
+          background: #fff;
+          width: 400px;
+          height: 100%;
+          position: absolute;
+          border: none;
+      }
+
+      .chat_title {
+          margin: 10px;
+          padding-left: 10px;
+          border-bottom: 1px solid #000;
+      }
+
+      .chat_title>h1 {
+          font-family: montserrat-black;
+      }
+
+      .messages {
+          height: calc(100% - 180px);
+          overflow-y: scroll;
+      }
+
+      .send {
+          height: 80px;
+          width: 400px;
+          position: fixed;
+          bottom: 0;
+      }
+
+      .input.chat_message {
+          margin-left: 100px;
+          margin-top: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="menu">
+      <p>Your ID:</p>
+      <p id="uuid"></p>
+      <input type="text" placeholder="Peer id" />
+      <br /><br />
+      <input type="text" placeholder="Name" id="name" />
+      <br /><br />
+      <button data-func="call_user">Connect</button>
+    </div>
+    <div class="live hidden">
+      <video id="remote-video"></video>
+      <video id="local-video" muted="true"></video>
+      <button class="button end_call" onclick="endCall()">End Call</button>
+      <button class="button open_chat">
+        <i class="fa-solid fa-message"></i>
+      </button>
+      <div class="chat hidden">
+        <div class="chat_title">
+          <h1>Chat</h1>
+        </div>
+        <div class="messages"></div>
+        <div class="send">
+          <form class="chat_form">
+            <input
+              type="text"
+              class="input chat_message"
+              placeholder="Chat Message"
+            />
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
