@@ -85,6 +85,7 @@ document.querySelector('[data-func="call_user"]').addEventListener('click', asyn
             const messages = document.querySelector('.messages');
             const chatInput = document.querySelector('.input.chat_message');
 
+            messages.innerHTML = '';
             chatBtn.classList.remove('hidden');
             chat.classList.add('hidden');
 
@@ -161,7 +162,7 @@ peer.on('call', (call) => {
 async function onCall(call) {
     if (/*confirm(`Accept call from ${call.peer.replace(prefix, '')}?`)*/true) {
         // grab the camera and mic
-        stream = await navigator.mediaDevices./*getDisplayMedia*/getUserMedia({
+        stream = await navigator.mediaDevices.getDisplayMedia/*getUserMedia*/({
             video: true,
             audio: true,
         });
@@ -209,6 +210,7 @@ function connection(connection) {
         const messages = document.querySelector('.messages');
         const chatInput = document.querySelector('.input.chat_message');
 
+        messages.innerHTML = '';
         chatBtn.classList.remove('hidden');
         chat.classList.add('hidden');
 
