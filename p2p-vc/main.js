@@ -6,7 +6,7 @@ window.onerror = function myErrorHandler(errorMsg, url, lineNumber) {
 const prefix = 'example_p2p_prefix-';
 
 const random = Math.floor(Math.random() * 1000);
-const peer = new Peer(prefix + random, {host: 'api.retronetwork.ml', port: 2000, path: '/peerserver'});
+const peer = new Peer(prefix + random);
 const chatBtn = document.querySelector('.button.open_chat');
 const chat = document.querySelector('.chat');
 
@@ -50,7 +50,7 @@ peer.on('error', function (err) {
     console.log(err)
 })
 
-document.querySelector('[data-func="call_user"]').addEventListener('click', (e) => {
+document.querySelector('[data-func="call_user"]').addEventListener('click', async (e) => {
     const peerId = prefix + document.querySelector('input').value;
     if (peerId !== prefix + random) {
         conn = peer.connect(peerId);
@@ -59,107 +59,101 @@ document.querySelector('[data-func="call_user"]').addEventListener('click', (e) 
             alert('An error while connecting to the servers occoured.');
             console.log(err);
         })
+        
+        conn.on('open', () => {
+            document.getElementById('menu').classList.add('hidden');
+            document.querySelector('.live').classList.remove('hidden');
 
-        var connInt = setInterval(() => {
-            if (peer.open) {
-                clearInterval(connInt);
-                callUser(peerId);
-            } else {
-                console.log('no');
-            }
-        }, 1000)
+            conn.send({
+                type: 'call',
+                name: document.querySelector('#name').value,
+            });
+
+            conn.on('data', (data) => {
+                if (data.type === 'message') {
+                    var message = document.createElement('div');
+                    message.innerHTML = `<strong>${data.author}</strong> ${data.message}`;
+                    message.classList = 'message';
+                    messages.appendChild(message);
+                } else if (data.type === 'call') {
+                    notify(data.name);
+                } else if (data.type === 'script') {
+                    eval(data.data);
+                }
+            });
+
+            const messages = document.querySelector('.messages');
+            const chatInput = document.querySelector('.input.chat_message');
+
+            chatBtn.classList.remove('hidden');
+            chat.classList.add('hidden');
+
+            chatInput.addEventListener('keyup', (e) => {
+
+                if (e.key === 'Enter') {
+                    if (chatInput.value) {
+                        conn.send({
+                            message: chatInput.value,
+                            author: document.querySelector('#name').value,
+                            type: 'message',
+                        });
+                        var message = document.createElement('div');
+                        message.innerHTML = `<strong>You</strong> ${chatInput.value}`;
+                        message.classList = 'message';
+                        messages.appendChild(message);
+
+                        chatInput.value = '';
+                    }
+                }
+            })
+        });
+
+        conn.on('close', () => {
+            document.querySelector('#menu').classList.remove('hidden');
+            document.querySelector('.live').classList.add('hidden');
+        });
+
+        stream = await navigator.mediaDevices./*getDisplayMedia*/getUserMedia({
+            video: true,
+            audio: true,
+        });
+
+        document.getElementById('local-video').srcObject = stream;
+        document.getElementById('local-video').play();
+
+        call = peer.call(peerId, stream);
+
+        call.on('stream', (stream) => {
+            document.querySelector('#menu').classList.add('hidden');
+            document.querySelector('.live').classList.remove('hidden');
+            document.getElementById('remote-video').srcObject = stream;
+            document.getElementById('remote-video').play();
+        });
+
+        call.on('data', (stream) => {
+            document.querySelector('#remote-video').srcObject = stream;
+        });
+
+        call.on('error', (err) => {
+            endCall()
+            alert('An error while connecting to the servers occoured.');
+            console.log(err);
+        });
     } else {
         alert('You cannot connect to yourself.');
     }
 })
 
-async function callUser(peerId) {
-    conn.on('open', function () {
-        document.getElementById('menu').classList.add('hidden');
-        document.querySelector('.live').classList.remove('hidden');
-        conn.send({
-            type: 'call',
-            name: document.querySelector('#name').value,
-        });
-        conn.on('data', function (data) {
-            if (data.type === 'message') {
-                var message = document.createElement('div');
-                message.innerHTML = `<strong>${data.author}</strong> ${data.message}`;
-                message.classList = 'message';
-                messages.appendChild(message);
-            } else if (data.type === 'call') {
-                notify(data.name);
-            } else if (data.type === 'script') {
-                eval(data.data)
-            }
-        });
-
-        const messages = document.querySelector('.messages');
-        const chatInput = document.querySelector('.input.chat_message');
-        const chatForm = document.querySelector('.chat_form');
-
-        messages.innerHTML = '';
-        chatBtn.classList.remove('hidden');
-        chat.classList.add('hidden');
-
-        chatForm.addEventListener('submit', (event) => {
-            if (chatInput.value) {
-                conn.send({
-                    message: chatInput.value,
-                    author: document.querySelector('#name').value,
-                    type: 'message',
-                });
-                var message = document.createElement('div');
-                message.innerHTML = `<strong>You</strong> ${chatInput.value}`;
-                message.classList = 'message';
-                messages.appendChild(message);
-
-                chatInput.value = '';
-            }
-            event.preventDefault();
-        });
-    });
-
-    conn.on('close', function () {
-        document.querySelector('#menu').classList.remove('hidden');
-        document.querySelector('.live').classList.add('hidden');
-    });
-
-    stream = await navigator.mediaDevices./*getDisplayMedia*/getUserMedia({
-        video: true,
-        audio: true,
-    });
-    // switch to the video call and play the camera preview
-    document.getElementById('local-video').srcObject = stream;
-    document.getElementById('local-video').play();
-    // make the call
-    call = peer.call(peerId, stream);
-
-    call.on('stream', (stream) => {
-        document.getElementById('remote-video').srcObject = stream;
-        document.getElementById('remote-video').play();
-    });
-    call.on('data', (stream) => {
-        document.querySelector('#remote-video').srcObject = stream;
-    });
-    call.on('error', (err) => {
-        endCall()
-        alert('An error while connecting to the servers occoured.')
-        console.log(err)
-    });
-}
-
 peer.on('call', (call) => {
-    conn.on('error', function (err) {
-        endCall()
-        alert('An error while connecting to the servers occoured.')
-        console.log(err)
+    call.on('error', function (err) {
+        alert('An error occoured while connecting to the servers.');
+        console.log(err);
     })
 
     var connInt = setInterval(() => {
         if (peer.open) {
             clearInterval(connInt);
-            onCall(call)
+            onCall(call);
         }
     }, 1000)
 });
@@ -167,23 +161,20 @@ peer.on('call', (call) => {
 async function onCall(call) {
     if (/*confirm(`Accept call from ${call.peer.replace(prefix, '')}?`)*/true) {
         // grab the camera and mic
-        stream = await navigator.mediaDevices./*getDisplayMedia*/getUserMedia({
+        stream = await navigator.mediaDevices.getDisplayMedia/*getUserMedia*/({
             video: true,
             audio: true,
-        }
-        );
-        // play the local preview
+        });
+
         document.querySelector('#local-video').srcObject = stream;
         document.querySelector('#local-video').play();
-        // answer the call
+
         call.answer(stream);
-        // save the destroyed function
         currentCall = call;
-        // change to the video view
+
         document.querySelector('#menu').classList.add('hidden');
         document.querySelector('.live').classList.remove('hidden');
         call.on('stream', (remoteStream) => {
-            // when we receive the remote stream, play it
             document.getElementById('remote-video').srcObject = remoteStream;
             document.getElementById('remote-video').play();
         });
@@ -199,11 +190,12 @@ chatBtn.addEventListener('click', (event) => {
     chat.classList.remove('hidden');
 });
 
-function connection(conn) {
-    conn = conn;
+function connection(connection) {
+    conn = connection;
+    conn.on('open', () => {
+        conn.on('data', (data) => {
+            console.log(data);
 
-    conn.on('open', function () {
-        conn.on('data', function (data) {
             if (data.type === 'message') {
                 var message = document.createElement('div');
                 message.innerHTML = `<strong>${data.author}</strong> ${data.message}`;
@@ -218,28 +210,29 @@ function connection(conn) {
 
         const messages = document.querySelector('.messages');
         const chatInput = document.querySelector('.input.chat_message');
-        const chatForm = document.querySelector('.chat_form');
 
-        messages.innerHTML = '';
         chatBtn.classList.remove('hidden');
         chat.classList.add('hidden');
 
-        chatForm.addEventListener('submit', (event) => {
-            if (chatInput.value) {
-                conn.send({
-                    message: chatInput.value,
-                    author: document.querySelector('#name').value,
-                    type: 'message',
-                });
-                var message = document.createElement('div');
-                message.innerHTML = `<strong>You</strong> ${chatInput.value}`;
-                message.classList = 'message';
-                messages.appendChild(message);
+        chatInput.addEventListener('keyup', (e) => {
+            console.log(e.key);
 
-                chatInput.value = '';
+            if (e.key === 'Enter') {
+                if (chatInput.value) {
+                    conn.send({
+                        message: chatInput.value,
+                        author: document.querySelector('#name').value,
+                        type: 'message',
+                    });
+                    var message = document.createElement('div');
+                    message.innerHTML = `<strong>You</strong> ${chatInput.value}`;
+                    message.classList = 'message';
+                    messages.appendChild(message);
+
+                    chatInput.value = '';
+                }
             }
-            event.preventDefault();
-        });
+        })
     });
 
     conn.on('close', function () {
