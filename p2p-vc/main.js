@@ -240,8 +240,12 @@ function connection(connection) {
 function endCall() {
     document.querySelector('#menu').classList.remove('hidden');
     document.querySelector('.live').classList.add('hidden');
-    conn.close();
-    call.close();
+    try {
+        conn.close();
+        call.close();
+    } catch (e) {
+        location.reload();
+    }
 
     conn = null;
     call = null;
