@@ -161,7 +161,7 @@ peer.on('call', (call) => {
 async function onCall(call) {
     if (/*confirm(`Accept call from ${call.peer.replace(prefix, '')}?`)*/true) {
         // grab the camera and mic
-        stream = await navigator.mediaDevices.getDisplayMedia/*getUserMedia*/({
+        stream = await navigator.mediaDevices./*getDisplayMedia*/getUserMedia({
             video: true,
             audio: true,
         });
@@ -194,8 +194,6 @@ function connection(connection) {
     conn = connection;
     conn.on('open', () => {
         conn.on('data', (data) => {
-            console.log(data);
-
             if (data.type === 'message') {
                 var message = document.createElement('div');
                 message.innerHTML = `<strong>${data.author}</strong> ${data.message}`;
@@ -215,8 +213,6 @@ function connection(connection) {
         chat.classList.add('hidden');
 
         chatInput.addEventListener('keyup', (e) => {
-            console.log(e.key);
-
             if (e.key === 'Enter') {
                 if (chatInput.value) {
                     conn.send({
