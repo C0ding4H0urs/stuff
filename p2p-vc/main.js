@@ -114,7 +114,7 @@ document.querySelector('[data-func="call_user"]').addEventListener('click', asyn
             document.querySelector('.live').classList.add('hidden');
         });
 
-        stream = await navigator.mediaDevices.getDisplayMedia/*getUserMedia*/({
+        stream = await navigator.mediaDevices./*getDisplayMedia*/getUserMedia({
             video: true,
             audio: true,
         });
@@ -162,7 +162,7 @@ peer.on('call', (call) => {
 async function onCall(call) {
     if (/*confirm(`Accept call from ${call.peer.replace(prefix, '')}?`)*/true) {
         // grab the camera and mic
-        stream = await navigator.mediaDevices.getDisplayMedia/*getUserMedia*/({
+        stream = await navigator.mediaDevices./*getDisplayMedia*/getUserMedia({
             video: true,
             audio: true,
         });
