@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+</head>
+
+<body>
+    <canvas id="canvas" width="600" height="300"></canvas>
+
+    <script>
+
+        class Game {
+            constructor() {
+                this.canvas;
+                this.ctx;
+                this.raf;
+                this.objects = {};
+                this.hitboxes = {};
+                this.keyManager = [];
+                this.keysDown = {};
+
+                window.onkeydown = (e) => {
+                    this.keyManager.forEach(parent => {
+                        parent.keys.forEach(key => {
+                            if (key == e.key) {
+                                this.keysDown[parent.name] = true;
+                                this.keyDown(parent.name);
+                            }
+                        })
+                    })
+                }
+
+                window.onkeyup = (e) => {
+                    this.keyManager.forEach(parent => {
+                        parent.keys.forEach(key => {
+                            if (key == e.key) {
+                                delete this.keysDown[parent.name];
+                            }
+                        })
+                    })
+                }
+
+                window.onerror = () => {
+
+                }
+            }
+
+            registerCanvas = (canvas = {}) => {
+                this.canvas = canvas;
+                this.ctx = this.canvas.getContext('2d');
+            }
+
+            startRender = () => {
+                this.render();
+            }
+
+            stopRender = () => {
+                window.cancelAnimationFrame(this.raf);
+            }
+
+            updateFrame = () => {
+                this.renderAll();
+            }
+
+            update = () => {
+                this.raf = window.requestAnimationFrame(this.render);
+            }
+
+            registerObject = (object = {}) => {
+                this.objects[object.name] = object;
+            }
+
+            registerKey = (keyData = {}) => {
+                this.keyManager.push(keyData);
+            }
+
+            getObject = (objectName = '', callback) => {
+                return this.objects[objectName];
+            }
+
+            getAllObjects = () => {
+                return this.objects;
+            }
+
+            renderAll = () => {
+                Object.keys(game.objects).forEach(key => {
+                    game.objects[key].render();
+                })
+            }
+
+            registerHitbox = (width, height, x, y, name = '') => {
+                this.hitboxes[name] = this.getObject('hitbox ' + name);
+
+                game.registerObject({
+                    name: 'hitbox ' + name,
+                    x: game.canvas.width / 2,
+                    y: game.canvas.height / 2,
+                    vx: 5,
+                    vy: 2,
+                    mass: 1.01,
+                    radius: 25,
+                    color: 'white',
+                    render() {
+                        game.ctx.fillRect(x, y, width, height);
+                        game.ctx.fillStyle = this.color;
+                        game.ctx.fill();
+                    }
+                });
+            }
+
+            getHitbox = (hitboxName = '') => {
+                return this.getObject('hitbox ' + name);
+            }
+
+            touchingHitbox = (hitboxName = '', object = {}) => {
+                const hitbox = this.getHitbox(hitboxName);
+
+                console.log(hitbox.y);
+            }
+
+            isKeyDown = (key) => {
+                if (this.keysDown[key]) {
+                    return this.keysDown[key];
+                } else {
+                    return false;
+                }
+            }
+
+            render;
+
+            keyDown;
+        }
+
+        const game = new Game();
+
+        game.registerCanvas(document.querySelector('canvas'));
+
+        game.registerObject({
+            name: 'ball',
+            x: game.canvas.width / 2,
+            y: game.canvas.height / 2,
+            vx: 12,
+            vy: 2,
+            mass: 1.01,
+            radius: 25,
+            color: 'white',
+            render() {
+                game.ctx.beginPath();
+                game.ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
+                game.ctx.closePath();
+                game.ctx.fillStyle = this.color;
+                game.ctx.fill();
+            }
+        });
+
+        game.registerObject({
+            name: 'ball2',
+            x: game.canvas.width / 2,
+            y: game.canvas.height / 2,
+            vx: 5,
+            vy: 3.5,
+            mass: 1.01,
+            radius: 25,
+            color: 'blue',
+            render() {
+                game.ctx.beginPath();
+                game.ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
+                game.ctx.closePath();
+                game.ctx.fillStyle = this.color;
+                game.ctx.fill();
+            }
+        });
+
+        game.registerHitbox(0, 0, 50, 50, 'hello');
+
+        game.registerKey({
+            name: 'jump',
+            keys: [
+                ' ',
+                'w',
+                'ArrowUp'
+            ]
+        });
+
+        game.registerKey({
+            name: 'left',
+            keys: [
+                'ArrowLeft',
+                'a'
+            ]
+        });
+
+        game.registerKey({
+            name: 'right',
+            keys: [
+                'ArrowRight',
+                'd'
+            ]
+        });
+
+        game.registerKey({
+            name: 'x',
+            keys: [
+                'x'
+            ]
+        });
+
+        game.registerKey({
+            name: 'ctrl',
+            keys: [
+                'Control'
+            ]
+        });
+
+        game.gravity = 1.01;
+
+        var time = 0;
+
+        game.render = () => {
+            time = Date.now();
+            game.ctx.fillStyle = 'rgb(0, 0, 0)';
+            game.ctx.fillRect(0, 0, game.canvas.width, game.canvas.height);
+            game.renderAll();
+
+            Object.keys(game.getAllObjects()).forEach(key => {
+                game.getAllObjects()[key].x += game.getAllObjects()[key].vx;
+
+                if (Math.sign(game.getAllObjects()[key].vx) === 1) {
+                    game.getAllObjects()[key].vx -= 0.05;
+                }
+            })
+
+            Object.keys(game.getAllObjects()).forEach(key => {
+                game.getAllObjects()[key].y += game.getAllObjects()[key].vy;
+
+                if (Math.sign(game.getAllObjects()[key].vy) === 1) {
+                    game.getAllObjects()[key].vy -= 0.05;
+                }
+            })
+
+            if (game.getObject('ball').y >= game.canvas.height - game.getObject('ball').radius) {
+                game.getObject('ball').y = game.canvas.height - game.getObject('ball').radius;
+            } else {
+                game.getObject('ball').y = game.getObject('ball').mass * game.gravity * game.getObject('ball').y;
+            }
+
+            game.update();
+
+            time - Date.now() + 1;
+            /*v=-9.81*t
+            x=v*t-a*t^2*/
+        }
+
+        game.keyDown = (e) => {
+            if (e == 'jump') {
+                if (game.getObject('ball').y >= game.canvas.height - game.getObject('ball').radius) {
+                    game.getObject('ball').y /= game.getObject('ball').mass * 1.5;
+                }
+            } else if (e == 'left') {
+                game.getObject('ball').x -= 0.5;
+            } else if (e == 'right') {
+                game.getObject('ball').x += 0.5;
+            } else {
+                //throw new Error('Unhandled keypress');
+            }
+
+            if (e == 'x' && game.isKeyDown('ctrl')) {
+                game.stopRender();
+                alert('Game Over');
+                game.keyDown = '';
+            }
+
+            if (e == 'ctrl' && game.isKeyDown('x')) {
+                game.stopRender();
+                alert('Game Over');
+                game.keyDown = '';
+            }
+        }
+
+        //Everything is ready, start the game!
+
+        game.startRender();
+    </script>
+</body>
+
+</html>
