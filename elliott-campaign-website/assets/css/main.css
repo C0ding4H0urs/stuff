@@ -1,99 +1,96 @@
-@import url('./fonts.css');
+@import "./fonts.css";
 
 * {
-    font-family: 'Raleway-Thin';
-    user-select: none;
+    font-family: Raleway-Thin;
     scroll-behavior: smooth;
+    user-select: none;
 }
 
 html,
 body {
-    color: #fff;
+    background-color: #0A1621;
+    background-image: url("../img/background.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #FFFFFF;
     height: 100vh;
-    margin: 0px;
-    background-color: #0a1621;
+    margin: 0;
 }
 
 .header {
-    background-image: url('../img/background.svg');
-    background-repeat: no-repeat;
-    background-size: cover;
     height: 100%;
-}
-
-.header>img {
-    position: absolute;
-    top: 8em;
-    height: 50em;
-    left: -20em;
+    background-image: url('../img/blob.svg');
+    background-repeat: no-repeat;
+    background-position-x: -100%;
+    background-position-y: center;
+    background-size: 80%;
 }
 
 .header>h1 {
+    color: #FFFFFF;
+    font-family: Raleway-Black;
+    font-size: 250%;
+    left: 6%;
     position: absolute;
     top: 45%;
-    left: 8%;
-    color: #fff;
-    font-size: 50px;
-    font-family: 'Raleway-Black';
 }
 
 .header>.right>h1 {
+    color: #FFFFFF;
+    font-family: Raleway-Black;
+    font-size: 400%;
     position: absolute;
+    right: 10%;
     top: 40%;
-    right: 20%;
-    color: #fff;
-    font-size: 80px;
-    font-family: 'Raleway-Black';
 }
 
 .header>.arrow {
-    width: 6vmin;
-    height: 6vmin;
     box-sizing: border-box;
-    position: absolute;
+    cursor: pointer;
+    height: 6vmin;
     left: 50%;
+    padding: 5px;
+    position: absolute;
     top: 90%;
     transform: rotate(135deg);
-    padding: 5px;
-    cursor: pointer;
+    width: 6vmin;
 }
 
 .header>.arrow::before {
-    content: '';
-    width: 100%;
-    height: 100%;
-    border-width: .5vmin .5vmin 0 0;
+    border-color: #FAFAFA;
     border-style: solid;
-    border-color: #fafafa;
-    transition: .2s ease;
+    border-width: 0.5vmin 0.5vmin 0 0;
+    content: "";
     display: block;
+    height: 100%;
     transform-origin: 100% 0;
+    transition: all 0.2s ease 0s;
+    width: 100%;
 }
 
-
-.header>.arrow:after {
-    content: '';
+.header>.arrow::after {
+    border-color: #FAFAFA;
+    border-style: solid;
+    border-width: 0 0.5vmin 0 0;
+    content: "";
     float: left;
+    height: 100%;
     position: relative;
     top: -100%;
-    width: 100%;
-    height: 100%;
-    border-width: 0 .5vmin 0 0;
-    border-style: solid;
-    border-color: #fafafa;
     transform-origin: 100% 0;
-    transition: .2s ease;
+    transition: all 0.2s ease 0s;
+    width: 100%;
 }
 
 .header>.arrow:hover::after {
-    transform: rotate(45deg);
     border-color: #3AA84B;
     height: 120%;
+    transform: rotate(45deg);
 }
 
 .header>.arrow:hover::before {
     border-color: #3AA84B;
-    transform: scale(.8);
+    transform: scale(0.8);
 }
 
 .content {
@@ -101,9 +98,9 @@ body {
 }
 
 .content>div:not(:last-child) {
-    background: #fff;
-    height: 35em;
+    background: #FFFFFF;
     display: flex;
+    height: 35em;
 }
 
 .content>div:not(:last-child)>div {
@@ -111,37 +108,37 @@ body {
 }
 
 .content>div:not(:last-child)>img {
-    padding: 30px;
     border-radius: 50px;
     height: 30em;
-    width: 25em;
     object-fit: cover;
-    object-position: center;
+    object-position: center center;
+    padding: 30px;
+    width: 25em;
 }
 
 .content>div:not(:last-child)>div>h1 {
-    color: #0a1621;
+    color: #0A1621;
+    font-family: Raleway-Black;
     font-size: 50px;
-    font-family: 'Raleway-Black';
 }
 
 .content>div:not(:last-child)>div>p {
-    color: #0a1621;
+    color: #0A1621;
 }
 
 .content>div:is(:last-child) {
-    background: #0a1621;
-    height: 35em;
+    background: #0A1621;
     display: flex;
+    height: 35em;
 }
 
 .content>div:is(:last-child)>img {
-    padding: 30px;
     border-radius: 50px;
     height: 30em;
-    width: 25em;
     object-fit: cover;
-    object-position: center;
+    object-position: center center;
+    padding: 30px;
+    width: 25em;
 }
 
 .content>div:is(:last-child)>div {
@@ -149,23 +146,23 @@ body {
 }
 
 .content>div:is(:last-child)>div>h1 {
-    color: #fff;
+    color: #FFFFFF;
+    font-family: Raleway-Black;
     font-size: 50px;
-    font-family: 'Raleway-Black';
 }
 
 .content>div:is(:last-child)>div>p {
-    color: #fff;
+    color: #FFFFFF;
 }
 
 footer {
-    background-image: url('../img/background.svg');
+    background-image: url("../img/background.svg");
     background-repeat: no-repeat;
     background-size: cover;
     height: 20%;
 }
 
 footer>p {
+    font-family: Raleway;
     padding: 20px;
-    font-family: 'Raleway';
 }
