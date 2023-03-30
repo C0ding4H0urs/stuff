@@ -1,20 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/main.css">
-    
+
     <title>Elliott for President</title>
 </head>
+
 <body>
     <div class="header">
+        <img src="./assets/img/blob.svg" draggable="false" />
+
         <h1>Elliott for President</h1>
         <div class="right">
             <h1>Vote today!</h1>
         </div>
         <span class="arrow"></span>
     </div>
+
+    <div class="content">
+        <div>
+            <img src="./assets/img/placeholder.jpg" title="Elliott McBride" />
+
+            <div>
+                <h1>Section 1</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit lorem ipsum dolor. Pellentesque risus mi, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum felis venenatis efficitur.</p>
+            </div>
+        </div>
+        <div>
+            <div>
+                <h1>Section 2</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit lorem ipsum dolor. Pellentesque risus mi, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum felis venenatis efficitur.</p>
+            </div>
+
+            <img src="./assets/img/placeholder.jpg" title="Elliott McBride" />
+        </div>
+    </div>
+
+    <footer>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit lorem ipsum dolor. Pellentesque risus mi, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum felis venenatis efficitur.</p>
+    </footer>
+
+    <script>
+        document.querySelector('.arrow').onclick = () => {
+            document.querySelector('.content').scrollIntoView();
+        }
+    </script>
 </body>
+
 </html>
