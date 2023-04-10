@@ -47,13 +47,13 @@ body {
 .header>.arrow {
     box-sizing: border-box;
     cursor: pointer;
-    height: 6vmin;
+    height: 5vmin;
     left: 50%;
     padding: 5px;
     position: absolute;
     top: 90%;
     transform: rotate(135deg);
-    width: 6vmin;
+    width: 5vmin;
 }
 
 .header>.arrow::before {
