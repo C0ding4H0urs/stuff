@@ -105,6 +105,7 @@ body {
 
 .content>div:nth-child(odd)>div {
     padding: 20px;
+    width: 70%;
 }
 
 .content>div:nth-child(odd)>img {
@@ -143,6 +144,7 @@ body {
 
 .content>div:nth-child(even)>div {
     padding: 20px;
+    width: 70%;
 }
 
 .content>div:nth-child(even)>div>h1 {
