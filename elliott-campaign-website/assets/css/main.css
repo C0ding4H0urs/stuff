@@ -97,17 +97,17 @@ body {
     height: 70em;
 }
 
-.content>div:not(:last-child) {
+.content>div:nth-child(odd) {
     background: #FFFFFF;
     display: flex;
     height: 35em;
 }
 
-.content>div:not(:last-child)>div {
+.content>div:nth-child(odd)>div {
     padding: 20px;
 }
 
-.content>div:not(:last-child)>img {
+.content>div:nth-child(odd)>img {
     border-radius: 50px;
     height: 30em;
     object-fit: cover;
@@ -116,23 +116,23 @@ body {
     width: 25em;
 }
 
-.content>div:not(:last-child)>div>h1 {
+.content>div:nth-child(odd)>div>h1 {
     color: #0A1621;
     font-family: Raleway-Black;
     font-size: 50px;
 }
 
-.content>div:not(:last-child)>div>p {
+.content>div:nth-child(odd)>div>p {
     color: #0A1621;
 }
 
-.content>div:is(:last-child) {
+.content>div:nth-child(even) {
     background: #0A1621;
     display: flex;
     height: 35em;
 }
 
-.content>div:is(:last-child)>img {
+.content>div:nth-child(even)>img {
     border-radius: 50px;
     height: 30em;
     object-fit: cover;
@@ -141,18 +141,42 @@ body {
     width: 25em;
 }
 
-.content>div:is(:last-child)>div {
+.content>div:nth-child(even)>div {
     padding: 20px;
 }
 
-.content>div:is(:last-child)>div>h1 {
+.content>div:nth-child(even)>div>h1 {
     color: #FFFFFF;
     font-family: Raleway-Black;
     font-size: 50px;
 }
 
-.content>div:is(:last-child)>div>p {
+.content>div:nth-child(even)>div>p {
     color: #FFFFFF;
+}
+
+/**/
+
+.content>div.center {
+    display: flex;
+    height: 35em;
+    width: 100vw;
+}
+
+.content>div.center>div {
+    width: 100%;
+}
+
+.content>div.center>div>h1 {
+    text-align: center;
+}
+
+.content>div.center>div>video {
+    height: 25em;
+    align-self: center;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
 }
 
 footer {
@@ -166,3 +190,4 @@ footer>p {
     font-family: Raleway;
     padding: 20px;
 }
+
