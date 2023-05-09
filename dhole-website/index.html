@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/main.css">
+
+    <title>Save the Dholes!</title>
+</head>
+
+<body>
+    <div class="header">
+        <div class="navbar">
+            <!--<a class="title" href="/">
+                <img src="/assets/img/logo.png" />
+            </a>-->
+        
+            <div class="end">
+                <a href="./">Home</a>
+            </div>
+        </div>
+
+        <img src="./assets/img/dhole.jpg" class="cutout">
+        <h1>Save the Dholes!</h1>
+        <span class="arrow"></span>
+    </div>
+
+    <div class="content">
+        
+    </div>
+
+    <script>
+        document.querySelector('.arrow').onclick = () => {
+            document.querySelector('.content').scrollIntoView();
+        }
+    </script>
+</body>
+
+</html>
