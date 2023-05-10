@@ -13,9 +13,11 @@
 <body>
     <div class="navbar">
         <div class="end">
-            <a href="./">Home</a>
+            <a href="./#">Home</a>
             <a href="#about">About</a>
+            <a href="#habitat-diet">Habitat and Diet</a>
             <a href="#fun-facts">Fun Facts</a>
+            <a href="#sources">Sources</a>
         </div>
     </div>
 
@@ -35,7 +37,7 @@
                     foxes in the canine family.
                 </p>
                 <p>
-                    Dholes are a bit strange when it comes to fitting them in to dog
+                    The dhole is a bit strange when it comes to fitting them in to dog
                     subfamilies, they have shorter jaws and females can have up to 12 pups per litter.
                 </p>
                 <p>
@@ -44,7 +46,34 @@
                 </p>
             </div>
 
-            <img src="./assets/img/dole_about.jpg" class="cutout2 right" width="500" title="Dhole looking at camera with green background. Credit: Dublin Zoo" />
+            <img src="./assets/img/dhole_about.jpg" class="cutout2" width="500"
+                title="Dhole looking at camera with green background. Credit: Dublin Zoo" />
+        </div>
+
+        <div id="habitat-diet">
+            <div>
+                <h1>Habitat and Diet</h1>
+
+                <p>
+                    The dhole is found in eastern and southern Asia. They vary depending on their habitat, but their
+                    tail
+                    is fox-like, usually with a black tip. They also have a white belly, chest and feet.
+                </p>
+                <p>
+                    Acording to animals.sandiegozoo.org, the dhole maintains a large territory. <i><b>"They maintain a
+                            very large territory—up to 34 square miles (88 square kilometers)!"</b></i>.
+                </p>
+                <p>
+                    Dholes are great at communicating and use a whistle to communicate with each other. They usually
+                    hunt in a group with one lead dog.
+                </p>
+                <p>
+                    Dholes prey upon hoofed mammals such as deer, goats, sheep, wild pigs and buffalo, just to name a
+                    few.
+                </p>
+            </div>
+            <img src="./assets/img/dhole_habitat-diet.avif" style="margin-top: 100px;" class="cutout3" width="700"
+                title="Four dhole pups running across path. Credit: shropshirestar.com">
         </div>
 
         <div id="fun-facts">
@@ -52,8 +81,8 @@
                 <h1>Fun Facts</h1>
 
                 <ul>
-                    <li>They live about 10 years in the wild up to 16 in captivity</li>
-                    <li></li>
+                    <li>They live about 10 years in the wild, and up to 16 in captivity.</li>
+                    <li>The dhole can whistle, scream, mew and even cluck.</li>
                 </ul>
             </div>
         </div>
@@ -68,9 +97,13 @@
                         Information: <a
                             href="https://animals.sandiegozoo.org/animals/dhole">https://animals.sandiegozoo.org/animals/dhole</a>
                     </li>
-                    <li id="dhole_about">
+                    <li>
                         Images: <a
                             href="https://www.dublinzoo.ie/animal/dhole/">https://www.dublinzoo.ie/animal/dhole/</a>
+                    </li>
+                    <li>
+                        Images: <a
+                            href="https://www.shropshirestar.com/entertainment/attractions/2019/06/14/adorable-pups-add-to-parks-dhole-pack/">https://www.shropshirestar.com/entertainment/attractions/2019/06/14/adorable-pups-add-to-parks-dhole-pack/</a>
                     </li>
                 </ul>
             </div>
@@ -83,8 +116,16 @@
 
     <script>
         document.querySelector('.arrow').onclick = () => {
-            document.querySelector('.content').scrollIntoView();
+            window.scrollTo(0, document.querySelector('.header').scrollHeight - document.querySelector('.navbar').scrollHeight);
         }
+
+        window.onscroll = () => {
+            if (window.scrollY > document.querySelector('.navbar').scrollHeight) {
+                document.querySelector('.navbar').classList.add('active');
+            } else {
+                document.querySelector('.navbar').classList.remove('active');
+            }
+        };
     </script>
 </body>
 

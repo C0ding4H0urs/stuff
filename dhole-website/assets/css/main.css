@@ -24,7 +24,7 @@ body {
 
 h1 {
     font-family: Raleway-Black;
-    font-size: 50px;
+    font-size: 5vh;
 }
 
 .navbar {
@@ -32,6 +32,20 @@ h1 {
     display: flex;
     justify-content: space-between;
     padding: 10px;
+    background-image: url('../img/background.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    width: 100%;
+    z-index: 9;
+    opacity: 0;
+    height: 5vh;
+    transition: 0.4s;
+}
+
+.navbar.active {
+    opacity: 1;
+    height: 10vh;
 }
 
 .navbar>.title>img {
@@ -44,7 +58,7 @@ h1 {
     font-size: 60px;
     margin-left: 13px;
     position: relative;
-    bottom: 13px;
+    bottom: 11px;
 }
 
 .navbar>.end {
@@ -53,18 +67,28 @@ h1 {
 }
 
 .navbar>.end>a {
+    margin: auto;
     margin: 0.5rem;
     padding: 1.5rem;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 2.5vh;
     background-color: #fff;
     color: #00101C;
     font-family: Raleway-Black;
     font-weight: bold;
     text-decoration: none;
     mix-blend-mode: screen;
+    position: relative;
+}
+
+.navbar>.end>a::before {
+    text-decoration: none;
+}
+
+.navbar>.end>a:hover::before {
+    text-decoration: none;
 }
 
 img.cutout {
@@ -85,28 +109,39 @@ img.cutout2 {
     -webkit-mask-repeat: no-repeat;
 }
 
+img.cutout3 {
+    mask-image: url('../img/cutout3.svg');
+    -webkit-mask-image: url('../img/cutout3.svg');
+    mask-size: contain;
+    -webkit-mask-size: contain;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+}
+
 .header {
     height: 100vh;
     width: 100%;
     background-image: url('../img/background.svg');
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
 }
 
 .header>img {
     position: absolute;
-    top: 30vh;
+    top: 43vh;
     left: 50%;
-    transform: translate(-50%, -30%);
+    transform: translate(-50%, -35%);
     mask-position: 50%;
     -webkit-mask-position: 50%;
+    height: 82vh;
 }
 
 .header>h1 {
     background-color: #fff;
     color: #000;
     font-family: Raleway-Black;
-    font-size: 100px;
+    font-size: 10vh;
     position: absolute;
     top: 65vh;
     left: 50%;
@@ -166,13 +201,13 @@ img.cutout2 {
 }
 
 .header>.arrow:hover::after {
-    border-color: #688a33;
+    border-color: #A27240;
     height: 120%;
     transform: rotate(45deg);
 }
 
 .header>.arrow:hover::before {
-    border-color: #688a33;
+    border-color: #A27240;
     transform: scale(0.8);
 }
 
