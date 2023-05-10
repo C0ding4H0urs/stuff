@@ -7,29 +7,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/main.css">
 
-    <title>Save the Dholes!</title>
+    <title>Home</title>
 </head>
 
 <body>
-    <div class="header">
-        <div class="navbar">
-            <!--<a class="title" href="/">
-                <img src="/assets/img/logo.png" />
-            </a>-->
-        
-            <div class="end">
-                <a href="./">Home</a>
-            </div>
+    <div class="navbar">
+        <div class="end">
+            <a href="./">Home</a>
+            <a href="#about">About</a>
+            <a href="#fun-facts">Fun Facts</a>
         </div>
+    </div>
 
-        <img src="./assets/img/dhole.jpg" class="cutout">
-        <h1>Save the Dholes!</h1>
+    <div class="header">
+        <img src="./assets/img/dhole.webp" class="cutout" draggable="false">
+        <h1>Save the dholes!</h1>
         <span class="arrow"></span>
     </div>
 
     <div class="content">
-        
+        <div id="about">
+            <div>
+                <h1>About dholes</h1>
+
+                <p>
+                    The dhole (pronounced dole) also known as the whistling dog. They are classified with wolves and
+                    foxes in the canine family.
+                </p>
+                <p>
+                    Dholes are a bit strange when it comes to fitting them in to dog
+                    subfamilies, they have shorter jaws and females can have up to 12 pups per litter.
+                </p>
+                <p>
+                    They are fast runners and good swimmers. This helps them survive the habitat they share with
+                    tigers and other predatory animals.
+                </p>
+            </div>
+
+            <img src="./assets/img/dole_about.jpg" class="cutout2 right" width="500" title="Dhole looking at camera with green background. Credit: Dublin Zoo" />
+        </div>
+
+        <div id="fun-facts">
+            <div>
+                <h1>Fun Facts</h1>
+
+                <ul>
+                    <li>They live about 10 years in the wild up to 16 in captivity</li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="sources">
+            <div>
+                <h1>Sources</h1>
+
+                <p>Written by Carter and Russell</p>
+                <ul>
+                    <li>
+                        Information: <a
+                            href="https://animals.sandiegozoo.org/animals/dhole">https://animals.sandiegozoo.org/animals/dhole</a>
+                    </li>
+                    <li id="dhole_about">
+                        Images: <a
+                            href="https://www.dublinzoo.ie/animal/dhole/">https://www.dublinzoo.ie/animal/dhole/</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
+
+    <footer>
+        <p>Made & Hosted by <a href="/">Russell2259</a></p>
+    </footer>
 
     <script>
         document.querySelector('.arrow').onclick = () => {

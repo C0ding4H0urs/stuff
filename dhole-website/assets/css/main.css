@@ -3,15 +3,28 @@
 * {
     font-family: Raleway-Thin;
     scroll-behavior: smooth;
-    user-select: none;
 }
 
 html,
 body {
-    background-color: #0A1621;
+    background-color: #7E8137;
     color: #FFFFFF;
     margin: 0;
     width: 100%;
+    user-select: none;
+}
+
+body {
+    background-image: url('../img/footer_grass.svg');
+    background-repeat: repeat-x;
+    background-position: bottom;
+    position: relative;
+    min-height: 100vh;
+}
+
+h1 {
+    font-family: Raleway-Black;
+    font-size: 50px;
 }
 
 .navbar {
@@ -47,7 +60,7 @@ body {
     cursor: pointer;
     font-size: 20px;
     background-color: #fff;
-    color: #000;
+    color: #00101C;
     font-family: Raleway-Black;
     font-weight: bold;
     text-decoration: none;
@@ -57,6 +70,15 @@ body {
 img.cutout {
     mask-image: url('../img/cutout.svg');
     -webkit-mask-image: url('../img/cutout.svg');
+    mask-size: contain;
+    -webkit-mask-size: contain;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+}
+
+img.cutout2 {
+    mask-image: url('../img/cutout2.svg');
+    -webkit-mask-image: url('../img/cutout2.svg');
     mask-size: contain;
     -webkit-mask-size: contain;
     mask-repeat: no-repeat;
@@ -73,7 +95,7 @@ img.cutout {
 
 .header>img {
     position: absolute;
-    top: 30%;
+    top: 30vh;
     left: 50%;
     transform: translate(-50%, -30%);
     mask-position: 50%;
@@ -86,7 +108,7 @@ img.cutout {
     font-family: Raleway-Black;
     font-size: 100px;
     position: absolute;
-    top: 65%;
+    top: 65vh;
     left: 50%;
     transform: translate(-50%, -65%);
     mix-blend-mode: screen;
@@ -112,7 +134,7 @@ img.cutout {
     left: 50%;
     padding: 5px;
     position: absolute;
-    top: 90%;
+    top: 90vh;
     transform: rotate(135deg);
     width: 45px;
 }
@@ -155,17 +177,72 @@ img.cutout {
 }
 
 .content {
-    height: 100vh;
+    min-height: 70vh;
+    margin: 50px;
+    margin-bottom: 0;
+    user-select: text;
+    padding-bottom: 230px;
+}
+
+.content>div {
+    display: flex;
+}
+
+.content>div>div:first-child {
+    width: 100%;
+}
+
+.right {
+    position: relative;
+    right: 0;
 }
 
 footer {
-    background-image: url('../img/background.svg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 20%;
+    height: 5vh;
+    margin-top: auto;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
 }
 
-footer>p {
+footer p {
     font-family: Raleway;
-    padding: 20px;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+footer a {
+    color: #688a33;
+}
+
+footer a::before {
+    background-color: #688a33;
+}
+
+a {
+    color: #ffffff;
+    text-decoration: none;
+    position: relative;
+    font-family: Raleway-Bold;
+}
+
+a::before {
+    background-color: #ffffff;
+    bottom: -0.5px;
+    content: '';
+    display: block;
+    height: 1px;
+    left: 0;
+    position: absolute;
+    transform: scaleX(0);
+    transform-origin: left top;
+    transition: transform 0.3s ease 0s;
+    width: 100%;
+}
+
+a:hover::before {
+    transform: scaleX(1);
 }
