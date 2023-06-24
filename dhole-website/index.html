@@ -17,6 +17,8 @@
             <a href="#about">About</a>
             <a href="#habitat-diet">Habitat and Diet</a>
             <a href="#fun-facts">Fun Facts</a>
+            <a href="#conservation-efforts">Conservation Efforts</a>
+            <a href="#endagerment-information">Endagerment Information</a>
             <a href="#sources">Sources</a>
         </div>
     </div>
@@ -46,8 +48,7 @@
                 </p>
             </div>
 
-            <img src="./assets/img/dhole_about.jpg" class="cutout2" width="500"
-                title="Dhole looking at camera with green background. Credit: Dublin Zoo" />
+            <img src="./assets/img/dhole_about.jpg" class="cutout2" width="500" title="Dhole looking at camera with green background. Credit: Dublin Zoo" />
         </div>
 
         <div id="habitat-diet">
@@ -72,8 +73,33 @@
                     few.
                 </p>
             </div>
-            <img src="./assets/img/dhole_habitat-diet.avif" style="margin-top: 100px;" class="cutout3" width="700"
-                title="Four dhole pups running across path. Credit: shropshirestar.com">
+            <img src="./assets/img/dhole_habitat-diet.avif" style="margin-top: 100px;" class="cutout3" width="700" title="Four dhole pups running across path. Credit: shropshirestar.com">
+        </div>
+
+        <div id="endagerment-information">
+            <div>
+                <h1>Endagerment Information</h1>
+
+                <p>
+                    The dhole were hunted as vermin. Their habitat was cut down for resources and their food soruces were hunted by humans.
+                </p>
+                <p>
+                    There about 2,500 dholes left in the wild.
+                </p>
+            </div>
+        </div>
+
+        <div id="conservation-efforts">
+            <div>
+                <h1>Conservation Efforts</h1>
+
+                <p>
+                    Many organizations are working to help save the dholes like the dhole conservation fund (<a href="https://dhole.org">dhole.org</a>)
+                </p>
+                <p>
+                    You can help dholes by donating to organizations like to dhole.org, you can also help them by contributing to other environmental helping organiztions
+                </p>
+            </div>
         </div>
 
         <div id="fun-facts">
@@ -94,16 +120,13 @@
                 <p>Written by Carter and Russell</p>
                 <ul>
                     <li>
-                        Information: <a
-                            href="https://animals.sandiegozoo.org/animals/dhole">https://animals.sandiegozoo.org/animals/dhole</a>
+                        Information: <a href="https://animals.sandiegozoo.org/animals/dhole">https://animals.sandiegozoo.org/animals/dhole</a>
                     </li>
                     <li>
-                        Images: <a
-                            href="https://www.dublinzoo.ie/animal/dhole/">https://www.dublinzoo.ie/animal/dhole/</a>
+                        Images: <a href="https://www.dublinzoo.ie/animal/dhole/">https://www.dublinzoo.ie/animal/dhole/</a>
                     </li>
                     <li>
-                        Images: <a
-                            href="https://www.shropshirestar.com/entertainment/attractions/2019/06/14/adorable-pups-add-to-parks-dhole-pack/">https://www.shropshirestar.com/entertainment/attractions/2019/06/14/adorable-pups-add-to-parks-dhole-pack/</a>
+                        Images: <a href="https://www.shropshirestar.com/entertainment/attractions/2019/06/14/adorable-pups-add-to-parks-dhole-pack/">https://www.shropshirestar.com/entertainment/attractions/2019/06/14/adorable-pups-add-to-parks-dhole-pack/</a>
                     </li>
                 </ul>
             </div>
@@ -117,7 +140,7 @@
     <script>
         document.querySelector('.arrow').onclick = () => {
             window.scrollTo(0, document.querySelector('.header').scrollHeight - document.querySelector('.navbar').scrollHeight);
-        }
+        };
 
         window.onscroll = () => {
             if (window.scrollY > document.querySelector('.navbar').scrollHeight) {
@@ -126,6 +149,13 @@
                 document.querySelector('.navbar').classList.remove('active');
             }
         };
+
+        var script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/eruda/2.11.3/eruda.js';
+        document.body.appendChild(script);
+        script.onload = function () {
+            eruda.init();
+        }
     </script>
 </body>
 

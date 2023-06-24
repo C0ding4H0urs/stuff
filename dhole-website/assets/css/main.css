@@ -1,7 +1,7 @@
 @import './fonts.css';
 
 * {
-    font-family: Raleway-Thin;
+    font-family: Raleway-ExtraLight;
     scroll-behavior: smooth;
 }
 
@@ -31,7 +31,7 @@ h1 {
     position: fixed;
     display: flex;
     justify-content: space-between;
-    padding: 10px;
+    padding: 1.5vh;
     background-image: url('../img/background.svg');
     background-repeat: no-repeat;
     background-size: cover;
@@ -56,9 +56,9 @@ h1 {
 .navbar>.title>span {
     font-family: 'Lato-Black';
     font-size: 60px;
-    margin-left: 13px;
+    margin-left: 1vw;
     position: relative;
-    bottom: 11px;
+    bottom: 1.7vh;
 }
 
 .navbar>.end {
@@ -68,12 +68,12 @@ h1 {
 
 .navbar>.end>a {
     margin: auto;
-    margin: 0.5rem;
-    padding: 1.5rem;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+    margin: 10px;
+    padding: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
     cursor: pointer;
-    font-size: 2.5vh;
+    font-size: 15px;
     background-color: #fff;
     color: #00101C;
     font-family: Raleway-Black;
