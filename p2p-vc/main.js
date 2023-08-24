@@ -13,13 +13,13 @@ const chat = document.querySelector('.chat');
 async function notify(callerName) {
     await Notification.requestPermission();
     const notification = new Notification(
-        'RetroNetwork Video Confrencing',
+        'EmberNetwork Video Confrencing',
         {
             dir: 'auto',
             lang: '',
-            badge: 'RetroNetwork Video Confrencing',
+            badge: 'EmberNetwork Video Confrencing',
             body: `Click here to answer call from ${callerName}`,
-            tag: 'RetroNetwork Video Confrencing',
+            tag: 'EmberNetwork Video Confrencing',
             icon: 'https://codehs.com/uploads/142208791d6699c74dfea636fced3e1d',
             image: '',
             requireInteraction: 'on',
@@ -114,7 +114,7 @@ document.querySelector('[data-func="call_user"]').addEventListener('click', asyn
             document.querySelector('.live').classList.add('hidden');
         });
 
-        stream = await navigator.mediaDevices./*getDisplayMedia*/getUserMedia({
+        stream = await navigator.mediaDevices.getDisplayMedia/*getUserMedia*/({
             video: true,
             audio: true,
         });
@@ -162,7 +162,7 @@ peer.on('call', (call) => {
 async function onCall(call) {
     if (/*confirm(`Accept call from ${call.peer.replace(prefix, '')}?`)*/true) {
         // grab the camera and mic
-        stream = await navigator.mediaDevices./*getDisplayMedia*/getUserMedia({
+        stream = await navigator.mediaDevices.getDisplayMedia/*getUserMedia*/({
             video: true,
             audio: true,
         });
