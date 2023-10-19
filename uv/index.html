@@ -1,10 +1,10 @@
-<script src="uv.bundle.js"></script>
+<script src="./uv.bundle.js"></script>
     <script src="./uv.config.js"></script>
 
     <script>
         navigator.serviceWorker.register('./sw.js', {
             scope: __uv$config.prefix
         }).then(e => {
-            window.location.replace(__uv$config.prefix + __uv$config.encodeUrl(prompt('Url', 'https://google.com')));
+            window.location.replace(__uv$config.prefix + __uv$config.encodeUrl(prompt('Url', prompt('Url', 'https://google.com'))));
         }).catch(e => alert(e));
     </script>
