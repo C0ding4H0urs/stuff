@@ -5,6 +5,6 @@
         navigator.serviceWorker.register('./sw.js', {
             scope: __uv$config.prefix
         }).then(e => {
-            window.location.replace(__uv$config.prefix + __uv$config.encodeUrl('https://google.com'));
+            window.location.replace(__uv$config.prefix + __uv$config.encodeUrl(prompt('Url', 'https://google.com')));
         }).catch(e => alert(e));
     </script>
