@@ -2,7 +2,7 @@
     <script src="./uv.config.js"></script>
 
     <script>
-        navigator.serviceWorker.register('https://unpkg.com/@titaniumnetwork-dev/ultraviolet@latest/dist/sw.js', {
+        navigator.serviceWorker.register('./sw.js', {
             scope: __uv$config.prefix
         }).then(e => {
             window.location.replace(__uv$config.prefix + __uv$config.encodeUrl('https://google.com'));
