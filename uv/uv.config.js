@@ -1,6 +1,6 @@
 self.__uv$config = {
     prefix: '/stuff/uv/service/',
-    bare: 'https://tomp.app/',
+    bare: 'https://polarislearning.arg/bare/',
     encodeUrl: Ultraviolet.codec.xor.encode,
     decodeUrl: Ultraviolet.codec.xor.decode,
     handler: 'https://unpkg.com/@titaniumnetwork-dev/ultraviolet@2.0.0/dist/uv.handler.js',
